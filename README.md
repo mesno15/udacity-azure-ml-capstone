@@ -1,12 +1,9 @@
-*NOTE:* This file is a template that you can use to create the README for your project. The *TODO* comments below will highlight the information you should be sure to include.
-
 # Azure Machine Learning Engineer - Capstone Project
 
 This project is the capstone project of Udacity's *Machine Learning Engineer with Microsoft Azure* nanodegree. 
 The scope of the project is to present the knowledge obtained from finishing the courses.
 
 ## Project Set Up and Installation
-*OPTIONAL:* If your project has any special installation steps, this is where you should put it. To turn this project into a professional portfolio project, you are encouraged to explain how to set up this project in AzureML.
 
 Setting up the project in Azure ML:
 1. Create new or access a workspace in Azure with your subscription
@@ -18,20 +15,32 @@ Setting up the project in Azure ML:
 
 ### Overview
 
-The dataset contains information about visual characteristics of cancerous cells and ground truth about the diagnosis made based on the cell data.
+The dataset contains information about visual characteristics of cancerous cells in the breast and ground truth about the diagnosis made based on the cell data. The visuals were measured based on X-rays.
 
 [*Source*](https://www.kaggle.com/datasets/yasserh/breast-cancer-dataset)
 
 ### Task
-*TODO*: Explain the task you are going to be solving with this dataset and the features you will be using for it.
 
 Based on the data we can create a classification model, so if we input the visual characteristics, a diagnosis can be made, whether the cell is benign or malignant.
 
 ### Access
 *TODO*: Explain how you are accessing the data in your workspace.
 
+For the Automated ML I have uploaded the dataset into the Azure ML Studio as a dataset. For the hyperdrive training I have uploaded the file and read it with pandas.
+
 ## Automated ML
 *TODO*: Give an overview of the `automl` settings and configuration you used for this experiment
+For the Automated Machine Learning, I have used the following settings and configuration.
+
+Settings:
+- *experiment_timeout_minutes*: 20 (stop after 20 mins of inactivity)
+- *max_concurrent_iterations*: 5 (maximum 5 different models run at the same time)
+- *primary_metric*: AUC_weighted (the metric based on which the AutoML will choose which model performs the best)
+ 
+Configuration:
+- *task*: Classification
+- *label_column_name*: diagnosis (this is the column in the dataset that needs to be classified)
+- *enable_early_stopping*: True (stop if the models do not improve 
 
 ### Results
 *TODO*: What are the results you got with your automated ML model? What were the parameters of the model? How could you have improved it?
